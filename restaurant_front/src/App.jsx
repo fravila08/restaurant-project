@@ -38,6 +38,18 @@ axios.defaults.headers.common['X-CSRFToken']= csrftoken
 
 function App() {
   const [user, setUser] = useState(null)
+  const [keyOne, setKeyone]= useState()
+  const [keyTwo, setKeyTwo]=useState()
+  const [show, setShow]=useState(false)
+    
+    const mykeys=async()=>{
+        const keys= await axios.get("getKeys")
+        setKeyone(keys.data["canadianrapidkey"])
+        setKeyTwo(keys.data["pizzarapidkey"])
+        console.log(keys.data)
+        setShow(true)
+    }
+    
   function signOut(){
     event.preventDefault()
     axios.post('/sign_out').then((respone)=>{
@@ -52,6 +64,7 @@ function App() {
   }
 
   useEffect(()=>{
+    mykeys()
     curr_user()
   },[])
   
@@ -78,7 +91,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path='/editCart/:cartId' element={<EditPage />} />
-          <Route path="/mealtypes/:mealtype" element={<MealTypePage allMeals={allMeals} setMeals={setAllMeals}/>} />
+          <Route path="/mealtypes/:mealtype" element={<MealTypePage keyOne={keyOne} keyTwo={keyTwo} show={show} allMeals={allMeals} setMeals={setAllMeals}/>} />
           <Route path="/meal/:mealID" element={<MealPage allMeals={allMeals}/>} />
           <Route path='/myCart' element={<CartPage />} />
           <Route path='/myProfile' element={<MyProfile />} />

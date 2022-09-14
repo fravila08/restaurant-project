@@ -4,7 +4,7 @@ function HomePage(){
     
     return(
         <div className="homePage">
-            <div className="msg" style={{width:"60%"}}>
+            <div className="msg" >
                 <h1>WELCOME!</h1>
                 <p>Hey there, welcome to the <strong>Happy Pig!</strong><br/>
                 I hope that you came here hungry... I guess you really wouldn't be here
