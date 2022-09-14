@@ -4,10 +4,21 @@ import { Link } from 'react-router-dom'
 
 function Cart(){
     const [cart, setCart]= useState([])
+    const [showData, setShowData]= useState(false)
 
-    useEffect(async ()=>{
-        let rescart=await axios.get("cart")
-        setCart(rescart.data)
+    const getCart = async()=>{
+        try{
+            const response=await axios.get("cart")
+            setCart(response.data)
+            setShowData(!showData)
+        }
+        catch{
+            console.log("no data")
+        }
+    }
+
+    useEffect(()=>{
+        getCart()
     }, [])
     
     const deleteCartItem=(id)=>{
@@ -26,7 +37,7 @@ function Cart(){
                     <p style={{width:"1vw"}}></p>
                 </div>
                 <div className='rowHolder'>
-                    {cart.length > 0 ? cart.map((item, index)=>
+                    {showData ? cart.map((item, index)=>
                     <div className='theRow'>
                         <p key={index} style={{width:"6vw"}} >{item.title}</p>
                         <p style={{width:"6vw"}}>{item.special_instructions}</p>

@@ -4,13 +4,16 @@ function HomePage(){
     
     return(
         <div className="homePage">
-            <br/>
-            <br/>
-            <h1>Welcome</h1>to the <br/>
-            <h1>Happy Pig</h1>
-            <br/>
-            <br/>
-            <p>We are here with yummy food ready to serve at moments notice. Southern Californias best FUSION <br/>restaurant for all people from all places. We welcome with a smaile and a hot plate. <br/>Thank you for your visit!</p>
+            <div className="msg" style={{width:"60%"}}>
+                <h1>WELCOME!</h1>
+                <p>Hey there, welcome to the <strong>Happy Pig!</strong><br/>
+                I hope that you came here hungry... I guess you really wouldn't be here
+                if you weren't hunry... anyways we have all the food
+                you could possibly imagine. From full course meals to deserts, all
+                you see here is top quality food that will make your tastebuds
+                explode. Once you try our food, you'll never want to eat anything
+                else again. Please feel free to look around as a guest.</p>
+            </div>
         </div>
     )
 }

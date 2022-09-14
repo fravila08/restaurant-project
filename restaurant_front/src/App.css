@@ -6,13 +6,24 @@
 }
 
 .homePage{
+    margin-top: 4vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     justify-content: center;
 }
 
+.msg{
+    background-color: grey;
+    border:solid 1vw goldenrod;
+    padding: 2vh 2vw;
+    border-radius: 2vw;
+}
+
 .navbar{
     width: auto;
-    background-color: darkgrey;
+    background-color: rgb(118, 118, 118);
     display: inline;
 }
 
@@ -61,10 +72,16 @@
 
 .cart{
     background-color: darkgrey;
-    width: 50vw;
+    width: 90vw;
+    height: 60vh;
+    overflow: hidden;
+    overflow-y: scroll;
     border: 2px white solid;
     padding-bottom: 2vw;
     border-radius: 2vw;
+}
+.cart::-webkit-scrollbar{
+    display: none;
 }
 
 .headers{
@@ -126,10 +143,55 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 60%;
+    min-height: 40vh;
+    border-radius: 2vw;
+}
+
+.textInput{
+    width: 80%;
+    border-radius: 1vw;
+}
+
+.subBtn{
     width: 50%;
-    height: 20vh;
+    border-radius: 1vw;
+}
+
+.subBtn:hover{
+    background-color: greenyellow;
 }
 
 .info{
     display: flex;
+}
+
+.myNav{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.mylinks{
+    padding: 5px 10px;
+    background-color: white;
+    border-radius: 1vw;
+    display: flex;
+    align-items: center;
+}
+
+.mylinks:hover{
+    background-color: goldenrod;
+}
+
+.otherLinks{
+    display: flex;
+    padding: 5px 10px;
+    width: fit-content;
+    border: solid 2px goldenrod;
+    border-radius: 1vw;
+}
+
+#needsMargin{
+    margin-left: 1vw;
 }

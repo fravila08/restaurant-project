@@ -11,6 +11,7 @@ import {HashRouter as Router, Routes, Route} from "react-router-dom";
 import AppNav from './components/AppNav';
 import MyProfile from './pages/MyProfile';
 import EditPage from './pages/EditPage';
+import piggy from './assets/piggy.png'
 
 
 function getCookie(name) {
@@ -63,9 +64,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1><strong>THE HAPPY PIG</strong></h1>
-      {user && <p>Welcome, {user.name}</p>}
-      <AppNav allMeals={allMeals}/>
+      <div style={{display:"flex", justifyContent:"space-between", padding:"1vh 4vw"}}>
+        <div>
+          <h1><strong>THE HAPPY PIG</strong></h1>
+          {user && <p>Welcome, {user.name}</p>}
+        </div>
+        <img style={{height:"11vh"}} src={piggy} />
+      </div>
+      <AppNav allMeals={allMeals} user={user}/>
       <Router>
         <Routes>
           <Route path="" element={<HomePage />} />

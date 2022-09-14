@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 function SignIn(){
-    function singIn(){
+    function signIn(){
         event.preventDefault()
         let email= document.getElementById('emailSignIn').value
         let password= document.getElementById('passwordSignIn').value
@@ -15,12 +15,15 @@ function SignIn(){
     }
     return (
       <div className='signCont'>
-        <div className='signForm'>
-            <input id='emailSignIn' placeholder='EMAIL'/>
+        <form onSubmit={signIn} className='signForm'>
+            <label><h3>Email:</h3></label>
+            <input className='textInput' id='emailSignIn' placeholder='EMAIL'/>
             <br/>
-            <input id='passwordSignIn' type='password' placeholder='PASSWORD'/>
-            <button onClick={singIn} style={{textDecoration:"underline"}}>Sign In</button>
-        </div>
+            <label><h3>Password:</h3></label>
+            <input  className='textInput' id='passwordSignIn' type='password' placeholder='PASSWORD'/>
+            <br/>
+            <input className='subBtn' type="submit" placeholder='Sign Up'/>
+        </form>
       </div>
     )
 }

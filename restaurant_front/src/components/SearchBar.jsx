@@ -5,6 +5,7 @@ import MealTease from './MealTease';
 function SearchBar({allMeals}){
     const [searchTitle, setSearchTitle]= useState('')
     const [results, setResults]=useState([])
+    const [showSearch, setShowSearch]= useState(false)
     
     const handleChange =(event)=>{
         console.log(event.target.value)
@@ -15,6 +16,10 @@ function SearchBar({allMeals}){
         if (searchTitle!= ''){
             const filterSearch=allMeals.filter((meal)=>meal.strMeal ? meal.strMeal.includes(searchTitle): meal.nombre.includes(searchTitle) )
             setResults(filterSearch)
+            setShowSearch(true)
+        }
+        else{
+            setShowSearch(false)
         }
     }, [searchTitle])
     console.log(results)
@@ -28,7 +33,7 @@ function SearchBar({allMeals}){
                 onChange={(event)=>handleChange(event)}
                 />
             </Form>
-            {results ? results.map((meals)=>(
+            {showSearch ? results.map((meals)=>(
                 <MealTease id= {meals.id ? meals.id : meals.idMeal} title={meals.strMeal ? meals.strMeal : meals.nombre} pic={meals.linkImagen ? meals.linkImagen : meals.strMealThumb}/>
             )): ''}
         </div>
