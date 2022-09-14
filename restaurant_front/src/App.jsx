@@ -1,8 +1,17 @@
-import { useEffect, useState } from 'react'
-// import {Link} from 'react-router-dom'
+import { useEffect, useState } from 'react';
 import './App.css'
 import axios from 'axios'
-import SignUp from './components/signUp';
+import SignUp from './pages/signUp';
+import SignIn from './pages/signIn';
+import HomePage from './pages/HomePage';
+import MealPage from './pages/MealPage';
+import MealTypePage from './pages/MealTypePage';
+import CartPage from "./pages/CartPage"
+import {HashRouter as Router, Routes, Route} from "react-router-dom";
+import AppNav from './components/AppNav';
+import MyProfile from './pages/MyProfile';
+import EditPage from './pages/EditPage';
+
 
 function getCookie(name) {
   let cookieValue = null;
@@ -10,7 +19,6 @@ function getCookie(name) {
       const cookies = document.cookie.split(';');
       for (let i = 0; i < cookies.length; i++) {
           const cookie = cookies[i].trim();
-          // Does this cookie string begin with the name we want?
           if (cookie.substring(0, name.length + 1) === (name + '=')) {
               cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
               break;
@@ -22,29 +30,13 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 axios.defaults.headers.common['X-CSRFToken']= csrftoken
 
+
+
+
+
+
 function App() {
   const [user, setUser] = useState(null)
-
-  // function signUp(){
-  //   // this will come into effect once the it's a form to submit not a button you'll use get elementbyid().value to get the form values
-  //   event.preventDefault
-  //   axios.post('/sign_up', {
-  //     email: 'jef@amazon.com', 
-  //     password: 'dragons'
-  //   }).then((response)=>{
-  //     console.log('response from server: ', response)
-  //   })
-  // }
-  function singIn(){
-    event.preventDefault()
-    axios.post('/sign_in', {
-      email: 'jef@amazon.com', 
-      password: 'dragons'
-    }).then((response)=>{
-      console.log('response from server: ', response)
-      window.location.reload()
-    })
-  }
   function signOut(){
     event.preventDefault()
     axios.post('/sign_out').then((respone)=>{
@@ -61,18 +53,31 @@ function App() {
   useEffect(()=>{
     curr_user()
   },[])
+  
+  const [allMeals, setAllMeals]=useState([])
+  const getMealById=(meal_id)=>{
+    return meal[meal_id]
+  }
 
+  
 
   return (
     <div className="App">
       <h1><strong>THE HAPPY PIG</strong></h1>
-      {user && <p>Welcome, {user.email}</p>}
-      {/* <button onClick={signUp}>Sign Up</button> */}
-      <SignUp />
-      {/* <Link to='/signup'>Sign Up</Link> */}
-      <button onClick={singIn}>Sign In</button>
-      <button onClick={signOut}>Sign Out</button>
-      <hr/>
+      {user && <p>Welcome, {user.name}</p>}
+      <AppNav allMeals={allMeals}/>
+      <Router>
+        <Routes>
+          <Route path="" element={<HomePage />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path='/editCart/:cartId' element={<EditPage />} />
+          <Route path="/mealtypes/:mealtype" element={<MealTypePage allMeals={allMeals} setMeals={setAllMeals}/>} />
+          <Route path="/meal/:mealID" element={<MealPage allMeals={allMeals}/>} />
+          <Route path='/myCart' element={<CartPage />} />
+          <Route path='/myProfile' element={<MyProfile />} />
+        </Routes>
+      </Router>
     </div>
   )
 }

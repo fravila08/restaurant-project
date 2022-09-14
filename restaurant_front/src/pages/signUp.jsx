@@ -12,13 +12,13 @@ function SignUp(){
           email: email, 
           password: password
         }).then((response)=>{
-            // usenavigate
-          document.location.href='/'
+          document.location.href='/#/signin'
           console.log('response from server: ', response)
         })
       }
       return(
-          <div>
+        <div className='signCont'>
+          <div className='signForm' style={{height:"40vh"}}>
               <label>First Name</label>
               <input id='name' placeholder='ex: pacho'/>
               <br/>
@@ -26,10 +26,11 @@ function SignUp(){
               <input id='email' placeholder='ex: pancho@gmail.com'/>
               <br/>
               <label>Password</label>
-              <input id='password'/>
+              <input id='password' type="password" placeholder='PASSWORD'/>
               <br/>
-              <button onClick={signUp}>Sign Up</button>
+              <button onClick={signUp} style={{textDecoration:"underline"}}>Sign Up</button>
           </div>
+        </div>
       )
 }
 
