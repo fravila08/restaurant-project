@@ -15,7 +15,7 @@ to render content in the Front End.
 
 ## Visit
 
-Go to https://fahappypig.com to see this project deployed.
+Go to https://fathehappypig.com to see this project deployed.
 
 
 
@@ -59,7 +59,7 @@ To deploy this project, first install requirements.txt then you need to create t
 with the following:
 
 ```bash
-  createdb ecom_app
+  createdb restaurant
 ```
 Then go to the restaurant_front run the following:
 
